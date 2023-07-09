@@ -22,4 +22,8 @@ class Customer < ApplicationRecord
       validates :telephone_number, presence:true
       validates :postal_code, presence:true
       validates :address, presence:true
+      #has_secure_password
+      #validates :password, presence: true, length: { minimum: 6 }
+
+
 end

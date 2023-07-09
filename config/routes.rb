@@ -5,9 +5,10 @@ devise_for :customers,skip: [:passwords], controllers: {
 }
 
 scope module: 'customers' do
-  root to: 'items#top'
-  resources :items, only:[:show, :index]
-  get 'about' => 'items#about'
+  #public/homesのtopアクションを表示
+  root to: 'public/homes#top'
+  resources :public, only:[:show, :index]
+  get 'about' => 'public/homes#about'
 end
 
 namespace :customers do
