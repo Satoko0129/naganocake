@@ -22,12 +22,17 @@ class Public::OrdersController < ApplicationController
         @order.address = ship.address
         @order.name = ship.name 
     end
+    
+    @cart_items = current_customer.cart_items.all
+    @total = 0
   end
 
   def thanks  #注文完了画面
   end
 
   def create  #注文確定処理
+    @order = Order.new(order_params)
+    @order.save
   end
 
   def index  #注文履歴画面
