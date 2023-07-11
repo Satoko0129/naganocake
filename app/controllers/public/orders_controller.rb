@@ -32,6 +32,7 @@ class Public::OrdersController < ApplicationController
 
   def create  #注文確定処理
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
   end
 
