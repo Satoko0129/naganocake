@@ -4,11 +4,18 @@ devise_for :customers,skip: [:passwords], controllers: {
   sessions: 'public/sessions'
 }
 
+#urlにpublic/と付かない
 scope module: 'public' do
   #public/homesのtopアクションを表示
   root to: 'homes#top'
   get 'about' => 'homes#about'
+end
+
+namespace :public do
   resources :genres, only: [:show]
+  patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
+  get 'show' => 'customers#show'
+  get 'customers/edit' => 'customers#edit'
 end
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
