@@ -1,3 +1,28 @@
-<div class="row">
-  <div class="col-"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h3><strong>商品新規登録</strong></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto mb-5">
+      <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :"商品画像" %></th>
+            <th><%= f.attachment_field :image %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :"商品名" %></th>
+            <th><%= f.text_field :name, placeholder: "商品名" %></th>
+          </div>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
