@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h3 class="my-5"><strong>商品一覧</strong></h3>　<!--my-5 上下のマージンを3rem-->
+    </div>
+    
+    <div class="col-sm-2 px-sm-0 text-right mt-5">
+      <%= link_to new_admin_item_path, class: "btn btn btn-outline-secondary" do %>
+      <i class="fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  
+   <table class="table">
+     <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+     </thead>
+     
+     <tbody>
+       <% @items.each do |item| %>
+         <tr>
+           <td><%= item.id %></td>
+           <td><%= link_to item.name, admins_item_path(item) %></td>
+           <td><%= item.price_without_tax.to_s(:delimited, delimiter: ',' %></td>
+           <td><%= item.genre.name %></td>
+           <td><%= if item.is_active == true %>
+           販売中
+           <% else %>
+           販売停止中
+           <% end %>
+           </td>
+         </tr>
+         <% end %>
+         <%= paginate @items %> <!--ページネーション用gem、kaminariを使用-->
+     </tbody>
+   </table>
+</div>

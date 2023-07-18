@@ -22,6 +22,43 @@
             <th><%= f.text_field :name, placeholder: "商品名" %></th>
           </div>
         </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :"商品説明" %></th>
+            <th><%= f.text_area :introduction, size: "50x5", placeholder: "ここに説明文を記述します" %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from-group">
+            <th><%= f.label :"ジャンル" %></th>
+            <th><%=f.collection_select :genre_id, @genres, :id, :name, :prompt => "--選択してください--" %></th>
+            <!--f.collection_select=プルダウン表示　カラム名, 要素の配列, value属性の項目, テキストの項目-->
+            <!--@genres(インスタンス変数）にジャンルの情報をallで入れておく-->
+            <!--要素のvalueでidを付与したいので、value属性の項目箇所は:idにする-->
+            <!--テキストではnameで表示したいので、テキストの項目箇所は:nameにする-->
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from-group">
+            <th><%= f.label :"税抜価格" %></th>
+            <th><%= f.text_field :price, placeholder: "1000" %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :"販売ステータス" %></th>
+            <td><%= f.radio_button :is_active, true, checked: true %> <!--チェックボックスのチェックの有無　デフォルト値：有-->
+                <%= f.label :is_active, "販売中" %>
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active, "販売停止中" %>
+            </td>
+          </div>
+        </tr>
+      <% end %>
       </table>
     </div>
   </div>
