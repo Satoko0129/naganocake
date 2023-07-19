@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :ordered_details #中間テーブル
+  has_many :order_details, dependent: :destroy #中間テーブル
   has_many :items, through: :ordered_details  
   
   enum status: {
@@ -9,5 +9,6 @@ class Order < ApplicationRecord
      "発送準備中":3, 
      "発送済み":4
   }
+  #status　→　注文ステータス
 enum payment_method: ["クレジットカード", "銀行振込"]
 end

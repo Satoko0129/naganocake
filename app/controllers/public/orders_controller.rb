@@ -8,21 +8,21 @@ class Public::OrdersController < ApplicationController
 
   def log  #注文情報確認画面
     @order = Order.new(order_params)
-    
+
     if params[:order][:address_option] == "0"
         @order.post_code = current_customer.post_code
         @order.address = current_customer.address
-        @order.name = current_customer.last_name + current_customer.first_name 
-        
+        @order.name = current_customer.last_name + current_customer.first_name
+
     # [:address_option]=="1"を呼び出す
     elsif params[:order][:address_option] == "1"
         ship = Address.find(params[:order][:customer_id])
         #orderのcustomer_idでアドレス帳を選び、そのデータ送る
         @order.post_code = ship.post_code
         @order.address = ship.address
-        @order.name = ship.name 
+        @order.name = ship.name
     end
-    
+
     @cart_items = current_customer.cart_items.all
     @total = 0
   end
@@ -41,9 +41,9 @@ class Public::OrdersController < ApplicationController
 
   def show  #注文履歴詳細画面
   end
-  
-  
-  
+
+
+
   private
     #Strong Parameters
     def order_params

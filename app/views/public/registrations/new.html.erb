@@ -1,5 +1,5 @@
 <div class="container">
-<h2>新規会員登録</h2>
+<h3>新規会員登録</h3>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -32,21 +32,21 @@
       <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com" %>
     </div>
   </div><br>
-  
+
   <div class="row">
     <label class="col-lg-3">郵便番号(ハイフンなし)</label>
     <div class="col-lg-3">
       <%= f.text_field :postal_code, autoforcus: true, placeholder: "0000000" %>
     </div>
   </div>
-  
+
   <div class="row">
     <label class="col-lg-3">住所</label>
-    <div class="col-lg-3">
+    <div class="col-lg-6">
       <%= f.text_field :address, autoforcus: true, placeholder: "東京都渋谷区代々木神園町0-0" %>
     </div>
   </div>
-  
+
   <div class="row">
     <label class="col-lg-3">電話番号(ハイフンなし)</label>
     <div class="col-lg-3">
@@ -67,6 +67,18 @@
     <%= f.password_field :password_confirmation, autoforcus: true %>
   　</div>
   </div>
-  
-<%= render "public/shared/links" %>
+
+  <div class="sign-up">
+    <%= f.submit "新規登録", class: "btn btn-success" %>
+  </div>
+
+
+  <h3>既に登録済みの方</h3>
+  <div class="col-sm-3">
+    <p>
+    <%= render "public/shared/links" %>
+    からログインしてください
+    </p>
+  </div>
+<% end %>
 </div>

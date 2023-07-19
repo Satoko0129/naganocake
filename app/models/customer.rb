@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
 
    #退会
   def active_for_authentication?
-    super && self.is_active?
+    super && (self.is_deleted == false)
   end
 
       #バリデーションヘルパー(presence=空でないこと)
