@@ -9,17 +9,19 @@ scope module: 'public' do
   #public/homesのtopアクションを表示
   root to: 'homes#top'
   get 'about' => 'homes#about'
+  get 'items' => 'items#index'
+  get 'items/:id' => 'items#show'
 end
 
 namespace :public do
   resources :genres, only: [:index]
   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw' #asオプション=ルーティングに名前を指定出来る
-  get 'show' => 'customers#show'
-  get 'customers/edit' => 'customers#edit'
-  patch 'update' => 'customers#update'
-  get 'quit' => 'customers#quit'
-  post 'log' => 'orders#log', as: 'orders_log'
-  get 'thanks' => 'orders#thanks'
+  get 'customers/my_page' => 'customers#show'
+  get 'customers/information/edit' => 'customers#edit'
+  patch 'customers/information' => 'customers#update'
+  get 'costomers/quit' => 'customers#quit'
+  post 'orders/log' => 'orders#log', as: 'orders_log'
+  get 'orders/thanks' => 'orders#thanks'
   resources :orders, only: [:new, :create, :index, :show] #[]内のアクションのみを指定
   resources :cart_items, only: [:index, :create, :update, :destroy]
   delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'

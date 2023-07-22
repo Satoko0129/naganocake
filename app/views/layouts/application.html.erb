@@ -8,23 +8,87 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   </head>
 
-  <body>
-    <header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <span>Naganocake</span>
+            </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to public_customers_my_page_path(current_customer.id), class: 'nav-link text-light' do %>
+                  <i class="fa-regular fa-user"></i>
+                    マイページ
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to items_path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-list"></i>
+                    商品一覧
+                   <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to public_cart_items_path, class: 'nav-link text-light' do %>
+                    <i class="fa-regular fa-cart-shopping"></i>
+                      カート
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                    <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                    <i class="fas fa-sign-out-alt"></i>
+                      ログアウト
+                  <% end %>
+                </li>
+
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-link"></i>
+                    About
+                <% end %>
+                </li>
+
+                <li class="nav-item">
+                <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-user-plus"></i>
+                    新規登録
+                <% end %>
+                </li>
+
+                <li class="nav-item">
+                <%= link_to new_customer_session_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-in-alt"></i>
+                    ログイン
+                <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
   </header>
     <%= yield %>
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Inflatop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>

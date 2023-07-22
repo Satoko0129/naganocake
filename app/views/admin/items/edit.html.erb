@@ -1,0 +1,61 @@
+<div class="container">
+  <h3 class="text-center my-5">商品編集</h3>
+  <div class="row">
+    <div class="col-8 offset-2 mb-5">
+      <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <%= f.label :"商品画像", class: "form_label" %>
+            <%= f.attachment_field :image, class: "mb-3 ml-3" %>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <%= f.label :"商品名", class: "form_label" %>
+            <%= f.text_field :name, placeholder: "商品名", class: "form-control mb-3" %>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <%= f.label :"商品説明", class: "form-label" %>
+            <%= f.text_area :introduction, size: "50x5", placeholder: "ここに説明文を記述します", class: "form-control form-control-lg" type="text" %>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <%= f.label :"ジャンル", class: "form_label" %>
+            <%= f.collection_select :genre_id, @items, :id, :name, :prompt => "--選択してください--", class: "form-select" %>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <%= f.label :"税抜価格", class: "form_label" %>
+            <%= f.text_field :price, size: "15" %>円　<!--size: "15"は15文字-->
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <%= f.label :"販売ステータス", class: "form_label my-3" %> <!--my-3 上下のマージンを1rem ※1remは16px-->
+            <%= f.radio_button :is_active, true, checked: true %>
+              <%= f.label :is_active, "販売中", class: "form_label" %>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, "販売停止中", class: "form_label" %>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from-action">
+            <%= f.submit "変更を保存", class: "btn btn-success" %>
+          </div>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
