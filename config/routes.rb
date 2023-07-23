@@ -11,9 +11,6 @@ scope module: 'public' do
   get 'about' => 'homes#about'
   get 'items' => 'items#index'
   get 'items/:id' => 'items#show'
-end
-
-namespace :public do
   resources :genres, only: [:index]
   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw' #asオプション=ルーティングに名前を指定出来る
   get 'customers/my_page' => 'customers#show'
@@ -27,6 +24,7 @@ namespace :public do
   delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 end
+
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
