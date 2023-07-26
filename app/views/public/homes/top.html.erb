@@ -1,10 +1,12 @@
 <div class="container">
-    <h6 class="mt-5"> <!--margin-top:5-->
-        ようこそ、ながのCAKEへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
-        購入には会員登録が必要になります。<br>
-    </h6>
+    <div class="background-image">
+        <h6 class="mt-5"> <!--margin-top:5-->
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。<br>
+        </h6>
+    </div>
 
     <h3 class="mt-5"><strong>新着商品</strong></h3>
 
@@ -20,7 +22,7 @@
                     </div>
                 <% end %>
             </div>
-        </div>
+            </div>
 
         <!-- pull-rightはBootstrapで右寄せ -->
         <h3><%= link_to "全ての商品を見る", items_path, class: "pull-right" %></h3>

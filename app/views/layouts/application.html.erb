@@ -26,28 +26,28 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to customers_my_page_path(current_customer.id), class: 'nav-link text-light' do %>
+                  <%= link_to customers_my_page_path(current_customer.id), class: 'nav-link text-dark' do %>
                   <i class="fa-regular fa-user"></i>
                     マイページ
                   <% end %>
                 </li>
 
                 <li class="nav-item">
-                  <%= link_to items_path, class: 'nav-link text-light' do %>
+                  <%= link_to items_path, class: 'nav-link text-dark' do %>
                   <i class="fa-solid fa-list"></i>
                     商品一覧
                    <% end %>
                 </li>
 
                 <li class="nav-item">
-                  <%= link_to cart_items_path, class: 'nav-link text-light' do %>
+                  <%= link_to cart_items_path, class: 'nav-link text-dark' do %>
                     <i class="fa-regular fa-cart-shopping"></i>
                       カート
                   <% end %>
                 </li>
 
                 <li class="nav-item">
-                    <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                    <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
                     <i class="fas fa-sign-out-alt"></i>
                       ログアウト
                   <% end %>
@@ -55,21 +55,21 @@
 
               <% else %>
                 <li class="nav-item">
-                  <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
                   <i class="fas fa-link"></i>
                     About
                 <% end %>
                 </li>
 
                 <li class="nav-item">
-                <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
                   <i class="fas fa-user-plus"></i>
                     新規登録
                 <% end %>
                 </li>
 
                 <li class="nav-item">
-                <%= link_to new_customer_session_path, class: 'nav-link text-light' do %>
+                <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
                   <i class="fas fa-sign-in-alt"></i>
                     ログイン
                 <% end %>
@@ -85,7 +85,7 @@
     <div class="container mt-5">
       <div class="row">
         <div class="mx-auto">
-          <p>CopyRight Inflatop.inc</p>
+          <p></p>
         </div>
       </div>
     </div>
