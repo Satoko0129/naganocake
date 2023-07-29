@@ -7,6 +7,30 @@
         <!--presentメソッドの基本形は、(変数）.present?-->
         <!--存在を確認したい変数に対して、カンマとpresent、そして最後にクエスチョンマークを付ける。-->
         <%= link_to "カートを空にする",cart_items_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn btn-danger" %>
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+        <% @cart_items.each do |i| %>
+          <tr id="cart-<%= i.id %>">
+            <th>
+              <%= attachment_image_tag i.item, :image, :size: "55x43", fallback: "noimage.jpg" %>
+              <%= i.item.name %>
+            </th>
+
+            <th>
+              <%= i.item.tax_in_price.to_s(:delimited, delimiter: ',') %>
+            </th>
+
+            <th>
+              <%= form_with model:i, url: cart_items_path(i), method: :patch, local: true do %>
+            </th>
+          </tr>
+      </table>
       </div>
     </div>
   </div>
