@@ -1,5 +1,8 @@
 class Public::CartItemsController < ApplicationController
-  before_action :authenticate_admin!
+
+  def subtotal
+    item.with_tax_price * amount
+  end
 
   def index
     @cart_items = current_customer.cart_items.all
