@@ -19,20 +19,17 @@
   box-sizing: border-box;
 }
 
+
+
 .background-image {
   background-image: url('cupcake.jpg');
+  background-color:rgba(255,255,255,0.6);
+  background-blend-mode:lighten;
   background-size: cover;
   height: 400px;
-  background-position: top center;
 }
 
-.touka {
-  background-color: rgba(255, 255, 255, 0.562);  
-}
-
-h6 {
+h5 {
   color: gray;
   line-height: 200px;
-  font-size: 30px
-
 }

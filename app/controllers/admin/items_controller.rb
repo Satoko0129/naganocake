@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!, only: [:create, :edit, :update, :index, :show, :new]
 
   def new
-    @item = Item.new
+    @items = Item.page(params[:page]))
   end
 
   def create

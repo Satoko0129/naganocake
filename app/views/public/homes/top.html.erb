@@ -1,16 +1,14 @@
-<div class="container">
-    <div class="background-image">
-        <h6 class="mt-5"> <!--margin-top:5-->
-            <div class="touka"></div>
+<div class="container">         <!--text-centerで文字の中央揃え、d-flexでブロック要素に変換、align-items-centerで上下中央寄せ、justify-content-centerで左右中央寄せ-->
+    <div class="background-image text-center d-flex align-items-center justify-content-center mt-5">
+        <h5>
                 ようこそ、ながのCAKEへ！<br>
                 このサイトは、ケーキ販売のECサイトになります。<br>
                 会員でない方も商品の閲覧はできますが、<br>
                 購入には会員登録が必要になります。<br>
-            </div>
-        </h6>
+        </h5>
     </div>
 
-    <h3 class="mt-5"><strong>新着商品</strong></h3>
+    <h3 class="mt-5"><strong>新着商品</strong></h3><!--margin-top:5-->
 
         <div class="col-xs-9 col-xs-offset-1">
             <div class="item-content">
@@ -27,5 +25,5 @@
             </div>
 
         <!-- pull-rightはBootstrapで右寄せ -->
-        <h3><%= link_to "全ての商品を見る", items_path, class: "pull-right" %></h3>
+        <h4><%= link_to "全ての商品を見る", items_path, class: "pull-right" %></h4>
 </div>

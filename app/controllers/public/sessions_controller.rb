@@ -2,14 +2,14 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :refect_customer, only: [:create]
+  before_action :reject_customer, only: [:create]
 
 
   protected
 
 
-  def refect_customer
-    @customer = Customer.find_by(email: params[:customer][:email].downcase)
+  def reject_customer
+    @customer = Customer.find_by(email: params[:customer][:email].downcase) #downcase 大文字を小文字に置き換える
     if @customer
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
         flash[:alert] = "このアカウントは退会済みです。"
