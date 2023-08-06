@@ -12,7 +12,7 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :"商品画像" %></th>
-            <th><%= f.attachment_field :image %></th>
+            <th><%= f.file_field :image, accept: "image/*" %></th>
           </div>
         </tr>
 
@@ -33,11 +33,13 @@
         <tr>
           <div class="from-group">
             <th><%= f.label :"ジャンル" %></th>
-            <th><%=f.collection_select :genre_id, @genres, :id, :name, :prompt => "--選択してください--" %></th>
+            <th><%=f.collection_select :genre_id, @genres, :id, :name, :prompt => "--選択してください--" options = { include_blank: true, selected: <idの値を動的に指定する> } %></th>
             <!--f.collection_select=プルダウン表示　カラム名, 要素の配列, value属性の項目, テキストの項目-->
             <!--@genres(インスタンス変数）にジャンルの情報をallで入れておく-->
             <!--要素のvalueでidを付与したいので、value属性の項目箇所は:idにする-->
             <!--テキストではnameで表示したいので、テキストの項目箇所は:nameにする-->
+            
+            <!--参考url https://zenn.dev/murakamiiii/articles/23be837359d232 -->
           </div>
         </tr>
 

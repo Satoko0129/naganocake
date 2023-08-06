@@ -4,7 +4,7 @@ class Item < ApplicationRecord
     belongs_to :genre
     attachment :image_id
 
-  def taxin_price
+  def tax_in_price
     price*1.1
   end
 
