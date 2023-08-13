@@ -4,7 +4,7 @@
       <div class="col-6 offset-3">
         <h3>管理者ログイン</h3>
 
-        <%= form_with url: new_admin_session_path, local: true do |f| %>
+        <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
 
         <div class="field my-2">
           <%= f.label :"メールアドレス", class: "form-label mt-3" %><br>
@@ -14,7 +14,7 @@
 
         <div class="field my-2">
           <%= f.label :"パスワード", class: "form-label mt-3" %><br>
-          <%= f.password_field :password, autocomplete: "curret-password", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
         </div>
 
         <div class="actions my-2 text-center">

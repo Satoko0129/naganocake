@@ -5,66 +5,66 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="row">
-    <label class="col-lg-3">名前</label>
-    <div class="col-lg-3">
+    <div class="field col-lg-3 ">
+      <%= f.label :"名前", class: "form-label col-lg-3 rounded-3" %>
       <%= f.text_field :last_name,autoforcus: true, placeholder: "令和" %>
     </div>
 
-    <div class="col-lg-3">
+    <div class="field col-lg-3">
       <%= f.text_field :first_name,autoforcus: true, placeholder: "道子" %>
     </div>
   </div><br>
 
   <div class="row">
-    <label class="col-lg-3">フリガナ</label>
-    <div class="col-lg-3">
+    <div class="field col-lg-3">
+      <%= f.label :"フリガナ", class: "form-label mt-3" %>
       <%= f.text_field :last_name_kana,autoforcus: true, placeholder: "レイワ" %>
     </div>
 
-    <div class="col-lg-3">
+    <div class="field mt-3">
       <%= f.text_field :first_name_kana,autoforcus: true, placeholder: "ミチコ" %>
     </div>
   </div><br>
 
   <div class="row">
-    <label class="col-lg-3">メールアドレス</label>
-    <div class="col-lg-3">
+    <div class="field mt-3">
+      <%= f.label :"メールアドレス", class: "form-label mt-3" %>
       <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com" %>
     </div>
   </div><br>
 
   <div class="row">
-    <label class="col-lg-3">郵便番号(ハイフンなし)</label>
-    <div class="col-lg-3">
+    <div class="field mt-3">
+      <%= f.label :"郵便番号(ハイフンなし)", class: "form-label mt-3" %>
       <%= f.text_field :postal_code, autoforcus: true, placeholder: "0000000" %>
     </div>
   </div>
 
   <div class="row">
-    <label class="col-lg-3">住所</label>
-    <div class="col-lg-6">
+    <div class="field mt-3">
+      <%= f.label :"住所", class: "form-label mt-3" %>
       <%= f.text_field :address, autoforcus: true, placeholder: "東京都渋谷区代々木神園町0-0" %>
     </div>
   </div>
 
   <div class="row">
-    <label class="col-lg-3">電話番号(ハイフンなし)</label>
-    <div class="col-lg-3">
+    <div class="field mt-3">
+      <%= f.label :"電話番号(ハイフンなし)", class: "form-label mt-3" %>
       <%= f.text_field :telephone_number, autoforcus: true, placeholder: "0000000" %>
     </div>
   </div>
 
   <div class="row">
-    <label class="col-lg-3">パスワード(6文字以上)</label>
-    <div class="col-lg-3">
-    <%= f.password_field :password, autoforcus: true %>
+    <div class="field mt-3">
+      <%= f.label :"パスワード(6文字以上)", class: "form-label mt-3" %>
+      <%= f.password_field :password, autoforcus: true %>
     </div>
   </div>
 
   <div class="row">
-    <label class="col-lg-3">パスワード(確認用)</label>
-    <div class="col-lg-3">
-    <%= f.password_field :password_confirmation, autoforcus: true %>
+    <div class="field mt-3">
+      <%= f.label :"パスワード(確認用)", class: "form-label mt-3" %>
+      <%= f.password_field :password_confirmation, autoforcus: true %>
     </div>
   </div>
 
