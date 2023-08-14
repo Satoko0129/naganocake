@@ -5,11 +5,27 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          #アソシエーション(1:Nの1の方)
-         has_many :cart_items, dependent: :destroy
-         has_many :orders, dependent: :destroy
-         has_many :addresses, dependent: :destroy
+        has_many :addresses, dependent: :destroy
+        has_many :cart_items, dependent: :destroy
+        has_many :orders, dependent: :destroy
 
-   #退会
+  def full_name  #last_name（姓）とfirst_name（名）を結合してフルネームを返すようにする。
+    last_name + '' + first_name
+  end
+
+  def full_name_kana
+    last_name_kana + '' + first_name_kana
+  end
+
+  def customer_status  #is_deletedフラグに基づいて、顧客のステータス（有効 or 退会）を返すようにする。
+    if is_deleted == true
+      "退会"
+    else
+      "有効"
+    end
+  end
+
+   #退会したユーザーがログインできないようにするためのメソッド。
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
