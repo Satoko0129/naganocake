@@ -6,7 +6,7 @@
 
     <div class="col-sm-2 px-sm-0 text-right mt-5">
       <%= link_to new_admin_item_path, class: "btn btn btn-outline-secondary" do %>
-      <i class="fa-solid fa-plus"></i>
+      <i class="fa-regular fa-plus"></i>
       <% end %>
     </div>
   </div>
@@ -16,7 +16,7 @@
    <table class="table mb-5">
      <thead>
       <tr>
-        <th>商品ID</th>
+        <th>商品ID</strong></th>
         <th>商品名</th>
         <th>税抜価格</th>
         <th>ジャンル</th>
@@ -29,13 +29,13 @@
          <tr>
            <td><%= item.id %></td>
            <td><%= link_to item.name, admin_item_path(item.id) %></td>
-           <td><%= item.price_without_tax.to_s(:delimited, delimiter: ',') %></td>
+           <td><%= item.tax_in_price.round.to_s(:delimited, delimiter: ',') %></td>
            <td><%= item.genre.name %></td>
            <td>
               <% if item.is_active == true %>
-                  <p class="text-success">販売中</p>
+                  <p class="text-success"><strong>販売中</strong></p>
               <% else %>
-                  <p class="text-secondary">販売停止中</p>
+                  <p class="text-secondary"><strong>販売停止中</strong></p>
               <% end %>
            </td>
          </tr>

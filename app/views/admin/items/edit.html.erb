@@ -7,7 +7,7 @@
         <tr>
           <div class="form-group">
             <%= f.label :"商品画像", class: "form_label" %>
-            <%= f.attachment_field :image, class: "mb-3 ml-3" %>
+            <%= f.file_field :image, placeholder: "sweets_image", accept: "image/*" %>
           </div>
         </tr>
 
