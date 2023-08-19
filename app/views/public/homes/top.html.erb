@@ -8,20 +8,20 @@
         </h5>
     </div>
 
-    <h3 class="mt-5"><strong>新着商品</strong></h3>
+    <h3 class="mt-5 mr-5"><strong>新着商品</strong></h3>
         <div class="col-xs-9 col-xs-offset-1">
             <div class="item-content">
                 <% @items.last(4).each do |item| %>
-                    <div class="col-xs-3" style="padding-right: 0px; padding-left: 0px;">
+                    <div class="col-xs-3 mr-5" style="display: inline-block;">
                         <%= link_to items_path(item.id), style: "color: black;", data: {"tubolinks" => false} do %>
-                            <%= image_tag item.get_image(180,125) %><br>
+                            <%= image_tag item.get_image(200,200) %><br>
                             <%= item.name %><br>
-                            ￥<%= item.tax_in_price.to_s(:delimited, delimiter: ',') %> <!-- 数字を3桁で区切る -->
+                            ￥<%= item.tax_in_price.round.to_s(:delimited, delimiter: ',') %> <!-- 数字を3桁で区切る -->
                         <% end %>
                     </div>
                 <% end %>
             </div>
-            </div>
+        </div>
 
         <!-- pull-rightはBootstrapで右寄せ -->
         <h4><%= link_to "全ての商品を見る", items_path, class: "pull-right" %></h4>
