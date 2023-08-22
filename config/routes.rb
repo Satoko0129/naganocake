@@ -10,7 +10,7 @@ scope module: 'public' do
   root to: 'homes#top'
   get 'about' => 'homes#about'
   get 'items' => 'items#index'
-  get 'items/:id' => 'items#show'
+  get 'items/:id' => 'items#show', as: 'item'
   resources :genres, only: [:index]
   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw' #asオプション=ルーティングに名前を指定出来る
   get 'customers/my_page' => 'customers#show'
@@ -23,6 +23,7 @@ scope module: 'public' do
   resources :cart_items, only: [:index, :create, :update, :destroy]
   delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  get '/genre/search' => 'searches#genre_search'
 end
 
 

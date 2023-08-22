@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_public!
+  before_action :authenticate_admin!
 
   def new  #注文情報入力画面(支払方法)
     @order = Order.new
@@ -7,10 +7,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def log  #注文情報確認画面
+    @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
 
     if params[:order][:address_option] == "0"
-        @order.post_code = current_customer.post_code
+        @order.postal_code = current_customer.postal_code
         @order.address = current_customer.address
         @order.name = current_customer.last_name + current_customer.first_name
 
@@ -18,12 +19,12 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:address_option] == "1"
         ship = Address.find(params[:order][:customer_id])
         #orderのcustomer_idでアドレス帳を選び、そのデータ送る
-        @order.post_code = ship.post_code
+        @order.postal_code = ship.postal_code
         @order.address = ship.address
         @order.name = ship.name
     end
 
-    @cart_items = current_customer.cart_items.all
+    
     @total = 0
   end
 
@@ -47,8 +48,7 @@ class Public::OrdersController < ApplicationController
   private
     #Strong Parameters
     def order_params
-        params.require(:order).permit(:postage, :payment_method, :name, :address, :post_code, :customer_id, :total_amount_billed, :status)
+        params.require(:order).permit(:postage, :payment_method, :name, :address, :postal_code, :customer_id, :total_amount_billed, :status)
     end
 
-end
 end

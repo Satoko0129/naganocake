@@ -6,7 +6,8 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items.all
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+
+    #@total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
     #カートに入っている商品の合計金額。カート内商品の一覧画面で、カート内商品の合計金額を算出。
     #inject・・・eachやmapのように繰り返しを行うメソッド。
     #inject(0)・・・配列の合計を算出。　配列オブジェクト.inject { |初期値, 要素| ブロック処理 }　が基本の形
@@ -15,12 +16,22 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(params_cart_item)
+    @cart_item.save
+    redirect_to cart_items_path
   end
 
   def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to cart_items_path
   end
 
   def destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   def create

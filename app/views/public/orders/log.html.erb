@@ -10,20 +10,20 @@
       <% @cart_items.each do |cart_item| %>
        <tr>
          <td>                       <!--保存先インスタンス名, 保存先カラム名, size:幅x高さ, fallback"代替画像"-->
-           <%= image_tag(cart_item.item, :image, :size "60x50", fallback: "noimage.jpg") %>
+           <%= image_tag cart_item.item.get_image(60,50), fallback: "noimage.jpg" %>
            <%= cart_item.item.name %>
          </td>
          
          <td><%= (cart_item.item.price*1.1).to_i %></td>
          
-         <td><%= cart_item.quantity %></td>
+         <td><%= cart_item.item.amount %></td>
          
          <td>
-             <% subtotal = ((cart_item.item.price*cart_item.quantity)*1.1).to_i %> <!--小計の計算-->
+             <% subtotal = ((cart_item.item.price*cart_item.item.amount)*1.1).to_i %> <!--小計の計算-->
              <%= subtotal %><!--小計を表示-->
          </td>
        </tr>
-       <% total += (cart_item.item.price*cart_item.quantity)*1.1 %> <!--アイテムごとに合計金額に加算-->
+       <% total += (cart_item.item.price*cart_item.item.amount)*1.1 %> <!--アイテムごとに合計金額に加算-->
      <% end %>
   </table>
   

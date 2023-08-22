@@ -29,7 +29,7 @@
             <ul class="navbar-nav">
               <% if customer_signed_in? %>
                 <li class="nav-item-activ">
-                  <span class="nav-link text-dark">ようこそ<%= full_name(current_customer) %>さん</span>
+                  <span class="nav-link text-dark">ようこそ<%= current_customer.full_name %>さん</span>
                 </li>
 
                 <li class="nav-item">

@@ -1,15 +1,18 @@
-<%= attachment_image_tag @item, :image size: "350x220", fallback: "noimage.jpg" %>
-<h3><%= @item.name %></h3>
-<p><%= @item.introduction %></p>
-<% if @item.is_active == true %>
-  <h5>¥<%= (@item.price * 1.1).to_i.to_s(:delimited, delimiter: ',') %></h5>
-  <p>(税込)</p>
-  <%= form_with model: @cart_item, url:cart_items_path, method: :post, local: true do |f| %> <!--カート内商品データ追加　※create  -->
-    <%= f.hidden_field :item_id value: @item.id %> <!--hidden_field・・・複数のwebページ間でデータの受け渡しをする。item_idとcustomer_idをカート画面に渡す-->
-    <%= f.hidden_field :customer_id, value => current_customer.id %>
-    <%= f.select :amount,[1,2,3,4,5,6,7,8,9,10], {include_blank: "個数選択"} %>
-    <%= f.submit "カートに入れる", class: "btn btn-success" %>
+<div class="container mt-5">
+  <%= image_tag @item.get_image(300,300), fallback: "noimage.jpg" %></p>
+  <h3><%= @item.name %></h3>
+  <p><%= @item.introduction %></p>
+  <% if @item.is_active == true %>
+    <h5>¥<%= (@item.price * 1.1).to_i.to_s(:delimited, delimiter: ',') %></h5>
+    <p>(税込)</p>
+
+    <%= form_with model: @cart_item, url:cart_items_path, method: :post, local: true do |f| %> <!--カート内商品データ追加　※create  -->
+      <%= f.label :amount, "個数選択" %>
+      <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+    <% end %>
+  <% else %>
+    <h5>売り切れ</h5>
   <% end %>
-<% else %>
-  <h5>売り切れ</h5>
-<% end %>
+</div>
