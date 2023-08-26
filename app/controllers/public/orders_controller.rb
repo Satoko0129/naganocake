@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_customer!, only: [:new, :log, :create, :index, :show, :thanks]
 
   def new  #注文情報入力画面(支払方法)
     @order = Order.new
@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
         @order.name = ship.name
     end
 
-    
+
     @total = 0
   end
 
@@ -35,20 +35,36 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      order_detail = OrderDetail.new
+      order_detail.item_id = cart_item.item_id
+      order_detail.order_id = @order.id
+      order_detail.quantity = cart_item.amount
+      order_detail.price = cart_item.item.price
+      order_detail.save
+    end
+
+    current_customer.cart_items.destroy_all
+
+    redirect_to orders_thanks_path
   end
 
   def index  #注文履歴画面
+    @orders = current_customer.orders.page(params[:page]).per(10)
   end
 
   def show  #注文履歴詳細画面
+    @order = Order.find(params[:id])
+    @order_details= OrderDetail.where(order_id: @order.id)
   end
-
+  
 
 
   private
     #Strong Parameters
     def order_params
-        params.require(:order).permit(:postage, :payment_method, :name, :address, :postal_code, :customer_id, :total_amount_billed, :status)
+        params.require(:order).permit(:postage, :method_of_payment, :name, :address, :postal_code, :customer_id, :total_amount_billed, :status)
     end
 
 end

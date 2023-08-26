@@ -1,9 +1,9 @@
 class Public::AddressesController < ApplicationController
-  befor_action :authenticate_public!
+  before_action :authenticate_customer!
 
   def index
     @address = Address.new
-    @addresses = current_customer.addresse
+    @addresses = current_customer.address
   end
 
   def create
@@ -14,6 +14,10 @@ class Public::AddressesController < ApplicationController
         flash.now[:notice] = "新規配送先を登録しました"
         redirect_to addresses_path
       end
+  end
+
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' + name
   end
 
   def destroy

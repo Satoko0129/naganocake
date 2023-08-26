@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h3>注文履歴詳細</h3>
-    <%= if @order.present? %>
+    <% if @order.present? %>
         <strong>注文情報</strong>
       <table class="table table-bordered table-sm">
         <tbody>
@@ -35,7 +35,7 @@
       <table class="table table-bordered table-sm">
         <tr>
           <th class="thead-light">商品合計</th>
-            <td><%= total_price(@order_details).to_s(:delimited) %>円</td>
+            <td><%= (@order.total_amount_billed - @order.postage).to_s(:delimited) %>円</td>
         </tr>
 
         <tr>
@@ -62,12 +62,12 @@
           </thead>
 
           <tbody>
-            <%= @order_details.each do |order_detail| %>
+            <% @order_details.each do |order_detail| %>
               <tr>
                 <td><%= order_detail.item.name %></td>
-                <td><%= order_detail.item.tax_in_price.to_s(:delimited) %></td>
+                <td><%= order_detail.item.tax_in_price.round.to_s(:delimited) %></td>
                 <td><%= order_detail.quantity %></td>
-                <td><%= order_detail.tax_in_price.to_s(:delimited) %></td>
+                <td><%= order_detail.price.to_s(:delimited) %></td>
               </tr>
             <% end %>
           </tbody>

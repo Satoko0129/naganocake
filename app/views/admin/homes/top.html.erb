@@ -18,7 +18,7 @@
               <% end %>
             </td>
 
-            <td><%= full_name(order.customer) %></td>
+            <td><%= order_detail.item.name %></td>
 
             <td><%= order.order_details.count %></td>
 
@@ -29,6 +29,6 @@
       </thead>
     </table>
     <div class="d-flex justify-content-center">
-      <%= paginate(@orders) %>
+      <%= paginate @orders, theme: 'bootstrap-5' %>
     </div>
 </div>
