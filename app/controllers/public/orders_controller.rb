@@ -10,13 +10,13 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
 
-    if params[:order][:address_option] == "0"
+    if params[:order][:address_type] == "0"
         @order.postal_code = current_customer.postal_code
         @order.address = current_customer.address
         @order.name = current_customer.last_name + current_customer.first_name
 
-    # [:address_option]=="1"を呼び出す
-    elsif params[:order][:address_option] == "1"
+    # [:address_type]=="1"を呼び出す
+    elsif params[:order][:address_type] == "1"
         ship = Address.find(params[:order][:customer_id])
         #orderのcustomer_idでアドレス帳を選び、そのデータ送る
         @order.postal_code = ship.postal_code
@@ -58,7 +58,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_details= OrderDetail.where(order_id: @order.id)
   end
-  
+
 
 
   private
