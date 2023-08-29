@@ -1,9 +1,8 @@
 class Item < ApplicationRecord
-    has_many :orders, through: :order_details #order_detailsを経由してordersのオブジェクトを取得する
+    #has_many :orders, through: :order_details #order_detailsを経由してordersのオブジェクトを取得する
     has_many :order_details #中間テーブル　※throughオプションを使うときに必要
     has_many :cart_items
     belongs_to :genre
-    belongs_to :order
     has_one_attached :image
 
     validates :price, presence: true

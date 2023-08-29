@@ -45,7 +45,7 @@
 
         <tr>
           <th class="thead-light">ご請求額</th>
-            <td><%= @order.total_amount_billed.to_s(:delimited) %>円</td>
+            <td><%= @order.total_amount_billed.round.to_s(:delimited) %>円</td>
         </tr>
       </table>
 

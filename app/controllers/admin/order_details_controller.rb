@@ -1,28 +1,32 @@
 class Admin::OrderDetailsController < ApplicationController
-  berore_action :authenticate_admin
+  before_action :authenticate_admin!
 
   def update
+
     @order = Order.find(params[:order_id])
-    @order_detail = OrderDetail.find(params[:id])
+    @order_detail = @order.order_details.find(params[:id])
     @order_details = @order.order_details.all
 
-    is_updated = true
-    if @order_detail.update(order_detail_params)
-      @order.update(status: 2) if @order_detail.making_status == "in_production"
-      # 製作ステータスが「製作中」のときに、注文ステータスを「製作中」に更新する。
+
+    @order_detail.update(order_detail_params)
 
 
-      # 紐付いている注文商品の製作ステータスが "すべて" [製作完了]になった際に注文ステータスを「発送準備中」に更新させたいので、
-      @order_details.each do |order_detail| #　紐付いている注文商品の製作ステータスを一つ一つeach文で確認していきます。
-        if order_detail.making_status != "production_complete" # 製作ステータスが「製作完了」ではない場合
-          is_updated = false # 上記で定義してあるis_updatedを「false」に変更する。
-        end
-      end
-      @order.update(status: 3) if is_updated
-      # is_updatedがtrueの場合に、注文ステータスが「発送準備中」に更新されます。上記のif文でis_updatedがfalseになっている場合、更新されません。
+    if @order_detail.making_status == "制作中"
+      @order.update(status: 2)
+      flash[:notice] = "制作ステータスを更新しました。"
+      @order.save
     end
-    redirect_to admin_order_path(@order)
+
+    if @order.order_details.count == @order.order_details.where(making_status: 3).count
+      @order.update(status: 3)
+      flash[:notice] = "制作ステータスを更新しました。"
+      @order.save
+    end
+    redirect_to request.referer
+      #遷移前のURLを取得する
+
   end
+
 
   private
 

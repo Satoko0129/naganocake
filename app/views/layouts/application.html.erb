@@ -47,8 +47,7 @@
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary mx-3 my-1" %>
                 </li>
-
-              <% elsif %>
+              <% elsif admin_signed_in? %>
                 <li class="nav-item">
                   <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary mx-3 my-1" %>
                 </li>
@@ -59,6 +58,23 @@
 
                 <li class="nav-item">
                   <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mx-3 my-1" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mx-3 my-1" %>
+                </li>
+
+              <% elsif %>
+                <li class="nav-item">
+                  <%= link_to "about", about_path, class: "btn btn-outline-secondary mx-3 my-1" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "商品一覧", items_path, class: "btn btn-outline-secondary mx-3 my-1" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary mx-3 my-1" %>
                 </li>
 
                 <li class="nav-item">
