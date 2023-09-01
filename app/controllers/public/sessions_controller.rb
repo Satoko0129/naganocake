@@ -9,14 +9,14 @@ class Public::SessionsController < Devise::SessionsController
 
 
   def reject_customer
-    @customer = Customer.find_by(email: params[:customer][:email].downcase) #downcase 大文字を小文字に置き換える
+    @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
-      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
+      if (@customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true))
         flash[:alert] = "このアカウントは退会済みです。"
-        redirecto_to new_customer_session_path
+        redirect_to new_customer_session_path
       end
     else
-      flash[:alert] = "必須項目を入力してください。"
+      flash[:alert] = "存在しないアカウントです。"
     end
   end
 

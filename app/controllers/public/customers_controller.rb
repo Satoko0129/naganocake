@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
     @customer = current_customer
-    @customer.update(is_deleted: false) #ステータスの更新
+    @customer.update(is_deleted: true) #ステータスの更新
     reset_session #ログアウトさせる
     redirect_to root_path
   end

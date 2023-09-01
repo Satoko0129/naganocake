@@ -17,8 +17,8 @@ class Public::OrdersController < ApplicationController
 
     # [:address_type]=="1"を呼び出す
     elsif params[:order][:address_type] == "1"
-        ship = Address.find(params[:order][:customer_id])
-        #orderのcustomer_idでアドレス帳を選び、そのデータ送る
+        ship = Address.find(params[:order][:registered_address_id])#terminalのパラメーターを確認して記述した
+        #orderのregistered_address_idでアドレス帳を選び、そのデータ送る
         @order.postal_code = ship.postal_code
         @order.address = ship.address
         @order.name = ship.name

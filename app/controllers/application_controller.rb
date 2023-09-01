@@ -5,19 +5,26 @@ class ApplicationController < ActionController::Base
   def authenticate_any!
     if request.path.match(/\/admin(\/)?/) # (管理者側のログイン制限)urlがadminの判定
       authenticate_admin!
-    elsif controller_name != 'items' # (顧客側のログイン制限)itemsコントローラー以外
+    elsif controller_name != 'items' && controller_name != 'homes' # (顧客側のログイン制限)itemsコントローラー,homesコントローラー以外
       authenticate_customer!
     end
   end
 
-  def after_sign_in_path_for(resourse)
-    case resourse
+  def after_sign_in_path_for(resource)
+    case resource
       when Admin
         admins_root_path
       when Customer
         root_path
     end
   end
+
+  #def after_sign_out_path_for(resource)
+    #case resource
+      #when Customer
+        #root_path
+    #end
+  #end
 
 
 

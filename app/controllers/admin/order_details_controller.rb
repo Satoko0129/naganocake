@@ -11,7 +11,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail.update(order_detail_params)
 
 
-    if @order_detail.making_status == "制作中"
+    if @order_detail.making_status_i18n == "制作中"
       @order.update(status: 2)
       flash[:notice] = "制作ステータスを更新しました。"
       @order.save

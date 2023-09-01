@@ -22,7 +22,7 @@
      <br>
         <%= f.radio_button :address_type, 1 %>
         <%= f.label :address_type, "登録済住所から選択" %>
-        <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| [[m.post_code, m.address, m.name].join(" "), m.id] } ,include_blank: "登録してある配送先住所から選択" %>
+        <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| [[m.postal_code, m.address, m.name].join(" "), m.id] } ,include_blank: "登録してある配送先住所から選択" %>
 
 
     <br>

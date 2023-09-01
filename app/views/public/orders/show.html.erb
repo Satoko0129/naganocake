@@ -25,7 +25,7 @@
 
           <tr>
             <th class="thead-light">ステータス</th>
-              <td><%= @order.status %></td>
+              <td><%= @order.status_i18n %></td>
           </tr>
         </tbody>
       </table>
@@ -67,7 +67,7 @@
                 <td><%= order_detail.item.name %></td>
                 <td><%= order_detail.item.tax_in_price.round.to_s(:delimited) %></td>
                 <td><%= order_detail.quantity %></td>
-                <td><%= order_detail.price.to_s(:delimited) %></td>
+                <td><%= order_detail.sum_of_price.to_s(:delimited) %></td>
               </tr>
             <% end %>
           </tbody>

@@ -13,7 +13,7 @@
             <div class="item-content">
                 <% @items.last(4).each do |item| %>
                     <div class="col-xs-3 mr-5" style="display: inline-block;">
-                        <%= link_to items_path(item.id), style: "color: black;", data: {"tubolinks" => false} do %>
+                        <%= link_to item_path(item.id), style: "color: black;", data: {"tubolinks" => false} do %>
                             <%= image_tag item.get_image(200,200) %><br>
                             <%= item.name %><br>
                             ￥<%= item.tax_in_price.round.to_s(:delimited, delimiter: ',') %> <!-- 数字を3桁で区切る -->

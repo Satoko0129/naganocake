@@ -7,12 +7,12 @@
           <tr><th>購入者</th><td><%= @order.customer.full_name %></td></tr>
           <tr><th>注文日</th><td><%= l @order.created_at %></td></tr>
           <tr><th>配送先</th><td>〒<%= @order.postal_code + " " + @order.address %></td></tr>
-          <tr><th>支払方法</th><%= @order.method_of_payment %></tr>
+          <tr><th>支払方法</th><td><%= @order.method_of_payment_i18n %></td></tr>
           <tr>
             <th>注文ステータス</th>
               <td>
                 <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-                <%= f.select :status, {'入金待ち': 0, '入金確認': 1, '制作中': 2, '発送準備中': 3, '発送完了': 4}, class: "update_status" %>
+                <%= f.select :status, {'入金待ち': 'waiting_for_payment', '入金確認': 'payment_confirmation', '制作中': 'under_construction', '発送準備中': 'preparing_to_ship', '発送完了': 'sent'}, class: "update_status" %>
                 <%= f.submit "更新", class: "btn btn-success" %>
                 <% end %>
               </td>
