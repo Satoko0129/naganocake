@@ -17,6 +17,8 @@ ja:
           waiting_for_production: "制作待ち"
           under_construction: "制作中"
           production_completed: "制作完了"
+          
+          
 
 
   time:

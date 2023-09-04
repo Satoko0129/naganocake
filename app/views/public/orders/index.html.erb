@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-xs-12">
       <h3>注文履歴一覧</h3>
-        <% if @orders %>
+        <% if @orders.empty? %>
+          <p>注文履歴がありません。</p>
+        <% else %>
             <table class="table">
               <tr>
                 <td>注文日</td>
@@ -32,8 +34,8 @@
 
               <%= paginate @orders, theme: 'bootstrap-5' %>
 
-        <% else %>
-          <p>注文履歴がありません。</p>
+        
+
         <% end %>
     </div>
   </div>
